@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Music Player</string>
+    <string name="shuffle_btn">Shuffle</string>
+    <string name="favorites_btn">Favorites</string>
+    <string name="playlists_btn">Playlists</string>
+    <string name="total_songs">Total Songs</string>
+    <string name="world_of_music">World Of Music</string>
+    <string name="song_name">Song Name</string>
+    <string name="back_btn">Back</string>
+    <string name="start_tv">00:00</string>
+    <string name="end_tv">Loading</string>
+    <string name="repeat_btn">Repeat</string>
+    <string name="equalizer_btn">Equalizer</string>
+    <string name="timer_btn">Timer</string>
+    <string name="share_btn">Share</string>
+    <string name="song_album">Song Album</string>
+    <string name="song_image">Song Image</string>
+    <string name="playlist_name">Playlist Name</string>
+    <string name="playlist_delete">Delete</string>
+    <string name="user_name">Your Name</string>
+    <string name="add_button">Add</string>
+    <string name="remove_all">Remove All</string>
+    <string name="search_song">Search Song</string>
+
+
+</resources>
