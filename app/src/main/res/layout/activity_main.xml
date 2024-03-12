@@ -32,17 +32,7 @@
                 android:text="@string/shuffle_btn"
                 android:textColor="@color/black"
                 android:textAllCaps="false"/>
-            <Button
-                android:id="@+id/favoritesBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:contentDescription="@string/favorites_btn"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:drawableTop="@drawable/favorite_icon"
-                android:text="@string/favorites_btn"
-                android:textColor="@color/black"
-                android:textAllCaps="false" />
+
             <Button
                 android:id="@+id/playlistBtn"
                 android:layout_width="wrap_content"

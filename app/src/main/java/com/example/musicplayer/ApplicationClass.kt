@@ -5,7 +5,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.os.Build
 
-// for our notification drawer
+// for our notificat ion drawer
 
 class ApplicationClass: Application() {
     companion object{

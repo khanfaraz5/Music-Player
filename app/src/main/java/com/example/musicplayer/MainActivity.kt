@@ -12,7 +12,6 @@ import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.musicplayer.databinding.ActivityMainBinding
 import com.google.gson.GsonBuilder
-import com.google.gson.reflect.TypeToken
 import java.io.File
 import kotlin.system.exitProcess
 
@@ -34,24 +33,35 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         if(requestRuntimePermission()){
             initializeLayout()
-            // for retrieving favorites data using shared preferences (since songs disappeared from favorites section after closing app)
-            FavoriteActivity.favoriteSongs = ArrayList()
-            val editor = getSharedPreferences("Favorites", MODE_PRIVATE) // MODE_PRIVATE so that no other apps can access the data
-            val jsonString = editor.getString("FavoriteSongs",null)
-            val typeToken = object :TypeToken<ArrayList<Music>>(){}.type
+//            // for retrieving favorites data using shared preferences (since songs disappeared from favorites section after closing app)
+//            FavoriteActivity.favoriteSongs = ArrayList() // fetching favoriteSongs from FavoriteActivity
+//            val editor = getSharedPreferences("Favorites", MODE_PRIVATE) // MODE_PRIVATE so that no other apps can access the data
+//            val jsonString = editor.getString("FavoriteSongs",null)
+//            val typeToken = object :TypeToken<ArrayList<Music>>(){}.type
+//
+//            if(jsonString !=null){ // bcuz it's not necessary that favorites will contain songs always
+//                val data: ArrayList<Music> = GsonBuilder().create().fromJson(jsonString , typeToken)
+//                FavoriteActivity.favoriteSongs.addAll(data)
+//            }
+//
+//            PlaylistActivity.musicPlaylist = MusicPlaylist()
+//            val jsonStringPlaylist = editor.getString("MusicPlaylist",null)
+//
+//            if(jsonStringPlaylist !=null){ // bcuz it's not necessary that favorites will contain songs always
+//                val dataPlaylist: MusicPlaylist = GsonBuilder().create().fromJson(jsonStringPlaylist , MusicPlaylist::class.java)
+//                PlaylistActivity.musicPlaylist = dataPlaylist
+//            }
 
-            if(jsonString !=null){ // bcuz it's not necessary that favorites will contain songs always
-                val data: ArrayList<Music> = GsonBuilder().create().fromJson(jsonString , typeToken)
-                FavoriteActivity.favoriteSongs.addAll(data)
-            }
-
+            // Fetching playlist data from SharedPreferences
             PlaylistActivity.musicPlaylist = MusicPlaylist()
-            val jsonStringPlaylist = editor.getString("MusicPlaylist",null)
+            val editor = getSharedPreferences("Favorites", MODE_PRIVATE)
+            val jsonStringPlaylist = editor.getString("MusicPlaylist", null)
 
-            if(jsonStringPlaylist !=null){ // bcuz it's not necessary that favorites will contain songs always
-                val dataPlaylist: MusicPlaylist = GsonBuilder().create().fromJson(jsonStringPlaylist , MusicPlaylist::class.java)
+            if (jsonStringPlaylist != null) {
+                val dataPlaylist: MusicPlaylist = GsonBuilder().create().fromJson(jsonStringPlaylist, MusicPlaylist::class.java)
                 PlaylistActivity.musicPlaylist = dataPlaylist
             }
+
         }
 
         binding.shuffleBtn.setOnClickListener {
@@ -63,12 +73,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.favoritesBtn.setOnClickListener {
 
-            // for going to
-            // favoriteActivity when clicked on favorites button
-            startActivity(Intent(this@MainActivity, FavoriteActivity::class.java))
-        }
 
         binding.playlistBtn.setOnClickListener {
 
@@ -187,13 +192,18 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        // for storing favorites data using shared preferences (since songs disappeared from favorites section after closing app)
-        val editor = getSharedPreferences("Favorites", MODE_PRIVATE).edit() // MODE_PRIVATE so that no other apps can access the data
-        val jsonString = GsonBuilder().create().toJson(FavoriteActivity.favoriteSongs)
-        editor.putString("FavoriteSongs",jsonString)
-        // for storing playlist data using shared preferences (since songs disappeared from favorites section after closing app)
+//        // for storing favorites data using shared preferences (since songs disappeared from favorites section after closing app)
+//        val editor = getSharedPreferences("Favorites", MODE_PRIVATE).edit() // MODE_PRIVATE so that no other apps can access the data
+//        val jsonString = GsonBuilder().create().toJson(FavoriteActivity.favoriteSongs)
+//        editor.putString("FavoriteSongs",jsonString)
+//        // for storing playlist data using shared preferences (since songs disappeared from favorites section after closing app)
+//        val jsonStringPlaylist = GsonBuilder().create().toJson(PlaylistActivity.musicPlaylist)
+//        editor.putString("MusicPlaylist",jsonStringPlaylist)
+//        editor.apply()
+        // for storing playlist data using shared preferences
+        val editor = getSharedPreferences("PlaylistData", MODE_PRIVATE).edit()
         val jsonStringPlaylist = GsonBuilder().create().toJson(PlaylistActivity.musicPlaylist)
-        editor.putString("MusicPlaylist",jsonStringPlaylist)
+        editor.putString("MusicPlaylist", jsonStringPlaylist)
         editor.apply()
     }
 }

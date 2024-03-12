@@ -64,12 +64,12 @@ class NotificationReciever: BroadcastReceiver() {
         playMusic()
         // when we changed songs through notification after making a song favorite , then a problem occurred where favorite icon was filled
         // for the next song too , so this code rectifies that error
-        PlayerActivity.fIndex = favoriteChecker(PlayerActivity.musicListPA[PlayerActivity.songPosition].id)
-        if(PlayerActivity.isFavorite){
-            PlayerActivity.binding.favoriteBtnPA.setImageResource(R.drawable.favorite_icon)
-        }
-        else{
-            PlayerActivity.binding.favoriteBtnPA.setImageResource(R.drawable.favorite_empty)
-        }
+//        PlayerActivity.fIndex = favoriteChecker(PlayerActivity.musicListPA[PlayerActivity.songPosition].id)
+//        if(PlayerActivity.isFavorite){
+//            PlayerActivity.binding.favoriteBtnPA.setImageResource(R.drawable.favorite_icon)
+//        }
+//        else{
+//            PlayerActivity.binding.favoriteBtnPA.setImageResource(R.drawable.favorite_empty)
+//        }
     }
 }

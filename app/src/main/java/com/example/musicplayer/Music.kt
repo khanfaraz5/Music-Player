@@ -48,15 +48,15 @@ fun setSongPosition(increment: Boolean){
 
 }
 
-// to check if current song or a particular song is in favorite list or not
-fun favoriteChecker(id: String): Int{
-    PlayerActivity.isFavorite = false
-    FavoriteActivity.favoriteSongs.forEachIndexed { index, music ->
-        if(id == music.id){
-            PlayerActivity.isFavorite = true
-            return index
-        }
-
-    }
-    return -1
-}
+//// to check if current song or a particular song is in favorite list or not
+//fun favoriteChecker(id: String): Int{
+//    PlayerActivity.isFavorite = false
+//    FavoriteActivity.favoriteSongs.forEachIndexed { index, music ->
+//        if(id == music.id){
+//            PlayerActivity.isFavorite = true
+//            return index
+//        }
+//
+//    }
+//    return -1
+//}

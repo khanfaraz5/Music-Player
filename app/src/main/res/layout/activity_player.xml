@@ -35,16 +35,7 @@
             android:gravity="center"
             android:layout_weight="1"/>
 
-        <ImageButton
-            android:id="@+id/favoriteBtnPA"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/favorite_empty"
-            android:background="@android:color/transparent"
-            android:layout_marginEnd="15dp"
-            android:layout_marginRight="5dp"
-            app:tint="@color/cool_pink"
-            android:contentDescription="@string/favorites_btn"/>
+
 
 
     </LinearLayout>

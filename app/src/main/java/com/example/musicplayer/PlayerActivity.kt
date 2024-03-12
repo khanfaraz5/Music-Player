@@ -88,18 +88,28 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
 
     // for displaying proper song name and image in playerActivity screen
     private fun setLayout(){
-        fIndex = favoriteChecker(musicListPA[songPosition].id) // checking if a song is favorite or not by song's id
+//        fIndex = favoriteChecker(musicListPA[songPosition].id) // checking if a song is favorite or not by song's id
+//        Glide.with(this)
+//            .load(musicListPA[songPosition].artURI)
+//            .apply(RequestOptions().placeholder(R.mipmap.music_player_icon).centerCrop())
+//            .into(binding.songImgPA)
+//        binding.songNamePA.text = musicListPA[songPosition].title
+//
+//        if(repeat){
+//            binding.repeatBtnPA.setColorFilter(ContextCompat.getColor(this,R.color.cool_green))
+//        }
+//        if(isFavorite) binding.favoriteBtnPA.setImageResource(R.drawable.favorite_icon)
+//        else binding.favoriteBtnPA.setImageResource(R.drawable.favorite_empty)
         Glide.with(this)
             .load(musicListPA[songPosition].artURI)
             .apply(RequestOptions().placeholder(R.mipmap.music_player_icon).centerCrop())
             .into(binding.songImgPA)
         binding.songNamePA.text = musicListPA[songPosition].title
 
-        if(repeat){
-            binding.repeatBtnPA.setColorFilter(ContextCompat.getColor(this,R.color.cool_green))
+        if (repeat) {
+            binding.repeatBtnPA.setColorFilter(ContextCompat.getColor(this, R.color.cool_green))
         }
-        if(isFavorite) binding.favoriteBtnPA.setImageResource(R.drawable.favorite_icon)
-        else binding.favoriteBtnPA.setImageResource(R.drawable.favorite_empty)
+
     }
 
     private fun createMediaPlayer(){
@@ -156,18 +166,18 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
             startActivity(Intent.createChooser(shareIntent,"Sharing Music File !!")) // to choose sharing method i.e whatsapp , insta etc
         }
         // if song is already added then do not add it again
-        binding.favoriteBtnPA.setOnClickListener {
-            if(isFavorite){
-                isFavorite = false
-                binding.favoriteBtnPA.setImageResource(R.drawable.favorite_empty)
-                FavoriteActivity.favoriteSongs.removeAt(fIndex)
-            }
-            else{
-                isFavorite = true
-                binding.favoriteBtnPA.setImageResource(R.drawable.favorite_icon)
-                FavoriteActivity.favoriteSongs.add(musicListPA[songPosition])
-            }
-        }
+//        binding.favoriteBtnPA.setOnClickListener {
+//            if(isFavorite){
+//                isFavorite = false
+//                binding.favoriteBtnPA.setImageResource(R.drawable.favorite_empty)
+//                FavoriteActivity.favoriteSongs.removeAt(fIndex)
+//            }
+//            else{
+//                isFavorite = true
+//                binding.favoriteBtnPA.setImageResource(R.drawable.favorite_icon)
+//                FavoriteActivity.favoriteSongs.add(musicListPA[songPosition])
+//            }
+//        }
 
     }
 
@@ -208,24 +218,24 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
                 setLayout()
 
             }
-            "favoriteAdapter"->   {
-                val intent = Intent(this, MusicService::class.java)
-                bindService(intent, this, BIND_AUTO_CREATE)
-                startService(intent)
-                musicListPA = ArrayList()
-                musicListPA.addAll(FavoriteActivity.favoriteSongs)
-                setLayout()
-            }
+//            "favoriteAdapter"->   {
+//                val intent = Intent(this, MusicService::class.java)
+//                bindService(intent, this, BIND_AUTO_CREATE)
+//                startService(intent)
+//                musicListPA = ArrayList()
+//                musicListPA.addAll(FavoriteActivity.favoriteSongs)
+//                setLayout()
+//            }
 
-            "FavoriteShuffle"->{
-                val intent = Intent(this, MusicService::class.java)
-                bindService(intent, this, BIND_AUTO_CREATE)
-                startService(intent)
-                musicListPA = ArrayList()
-                musicListPA.addAll(FavoriteActivity.favoriteSongs)
-                musicListPA.shuffle()
-                setLayout()
-            }
+//            "FavoriteShuffle"->{
+//                val intent = Intent(this, MusicService::class.java)
+//                bindService(intent, this, BIND_AUTO_CREATE)
+//                startService(intent)
+//                musicListPA = ArrayList()
+//                musicListPA.addAll(FavoriteActivity.favoriteSongs)
+//                musicListPA.shuffle()
+//                setLayout()
+//            }
             "PlaylistDetailsAdapter" ->{
                 val intent = Intent(this, MusicService::class.java)
                 bindService(intent, this, BIND_AUTO_CREATE)
